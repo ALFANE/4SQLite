@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body background="image1.gif">
+<h1>Post list:</h1>
+
+<ul>
+    {% for post in posts %}
+    <li><h3> Number: {{ post[0] }} || Title: {{ post[1] }} || Description: {{ post[2] }} || Date: {{ post[3] }}</h3></li>
+    {% endfor %}
+
+
+</ul>
+</body>
+</html>
