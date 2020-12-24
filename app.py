@@ -54,25 +54,25 @@ def edit(): #функция выполняет редактирование по
         return 'Sorry, you should insert title'
     if not description:
         return 'Sorry, you should insert description'
-    connection = sqlite3.connect('blog.sqlite')
-    cursor = connection.cursor()
-    values = (title, description, id)
-    cursor.execute("UPDATE posts SET title = ?, description = ? WHERE id = ?", values)
-    connection.commit()
-    connection.close()
-    return redirect('/all')
+    connection = sqlite3.connect('blog.sqlite')# соединяюсь с БД
+    cursor = connection.cursor() # инициальзирую курсор
+    values = (title, description, id) #присваиваю все значения одной переменной
+    cursor.execute("UPDATE posts SET title = ?, description = ? WHERE id = ?", values) # передаю в курсор SQL запрос
+    connection.commit()# отправляю SQL запрос в БД
+    connection.close() # закрываю соединение
+    return redirect('/all') #после выполнения функции перенаправляю к общему списку
 
 @app.route('/del')
-def delete():
-    id = request.args.get('id')
-    if not id:
+def delete(): # функция удаляет поля из таблицы posts по id
+    id = request.args.get('id') # считаываю id
+    if not id: # проверяю наличие id
         return 'Sorry, you should insert number of post'
-    connection = sqlite3.connect('blog.sqlite')
-    cursor = connection.cursor()
-    cursor.execute("DELETE FROM posts WHERE id=?", id)
-    connection.commit()
-    connection.close()
-    return redirect('/all')
+    connection = sqlite3.connect('blog.sqlite') # соединяюсь с БД
+    cursor = connection.cursor() #инициальзирую курсор
+    cursor.execute("DELETE FROM posts WHERE id=?", id) # передаю в курсор SQL запрос
+    connection.commit() # отправляю SQL запрос в БД
+    connection.close() # закрываю соединение
+    return redirect('/all') #после выполнения функции перенаправляю к общему списку
 
 
 
